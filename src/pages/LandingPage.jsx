@@ -5,10 +5,10 @@ function LandingPage() {
 
   return (
     <div
-      className="min-h-[100svh] bg-no-repeat bg-center flex items-center justify-center p-4"
+      className="h-[100svh] overflow-hidden bg-cover bg-no-repeat bg-center flex items-center justify-center p-4"
       style={{ backgroundImage: "url('/first_page.png')" }}
     >
-      <div className="max-w-md w-full min-h-[80vh] flex flex-col justify-between text-center animate-fadeIn pt-4 pb-10">
+      <div className="max-w-md w-full h-full flex flex-col justify-between text-center animate-fadeIn pt-4 pb-10">
         <div className="flex flex-col items-center gap-0 mt-6">
           <img src="/icon.png" alt="Breath icon" className="w-30 h-30" />
 
@@ -20,7 +20,7 @@ function LandingPage() {
           </h2>
         </div>
 
-        <div className="flex flex-col items-center gap-8 pb-4 mt-80">
+          <div className="flex flex-col items-center gap-8 pb-4">
           <p className="text-white/90 leading-relaxed px-6 text-center Prompt italic tracking-wide" style={{ fontSize: '16px', fontWeight: 200 }}>
             แสงเช้าจะกลับมาเสมอ<br />
             แม้คืนนี้จะยาวนานแค่ไหน

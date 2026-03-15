@@ -5,10 +5,10 @@ function StoryPage() {
 
   return (
     <div
-      className="min-h-[100svh] bg-no-repeat bg-center flex items-center justify-center p-4"
+      className="h-[100svh] overflow-hidden bg-cover bg-no-repeat bg-center flex items-center justify-center p-4"
       style={{ backgroundImage: "url('/bgst_1.png')" }}
     >
-      <div className="max-w-md w-full min-h-[80vh] flex flex-col justify-between text-center text-white animate-fadeIn-slow pb-14">
+      <div className="max-w-md w-full h-full flex flex-col justify-between text-center text-white animate-fadeIn-slow pb-8">
         <div className="mt-12 px-6 space-y-0">
           <p
             className="leading-relaxed font-extralight"
@@ -20,7 +20,7 @@ function StoryPage() {
           </p>
         </div>
 
-        <div className="mb-0 px-6 space-y-6 mt-auto translate-y-7">
+        <div className="mb-0 px-6 space-y-6">
           <p className="text-white/90 italic font-extralight" style={{ fontSize: '17px', fontFamily: 'Prompt', fontWeight: 200 }}>
             คุณพร้อมที่จะก้าวสู่การเดินทาง<br />
             ครั้งนี้หรือยัง?

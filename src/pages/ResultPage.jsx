@@ -55,7 +55,7 @@ const resultConfig = {
     buttonColor: 'text-blue-800'
   },
   GOLDEN_SUN: {
-    bg: '/goldbg.png',
+    bg: '/Goldbg.png',
     title: 'GOLDEN SUN',
     subtitle: 'ผู้ให้พลังใจและความมั่นคง',
     description: `คุณคือคนที่เต็มไปด้วยพลังในการ
@@ -108,52 +108,52 @@ function ResultCard({ config }) {
               </div>
             </div>
 
-            <div className="px-6 mt-5 space-y-4 flex-1">
-              <div>
-                <p className="result-heading-font font-bold tracking-wide" style={{ fontSize: '28px' }}>
-                  {config.title}
-                </p>
-                <p className="result-heading-font font-extrabold mt-1" style={{ fontSize: '16px', fontWeight: 900 }}>
-                  {config.subtitle}
-                </p>
-              </div>
-
-              <div className="text-left space-y-2 text-white/90" style={{ fontSize: '14px' }}>
-                {typeof config.description === 'string' ? (
-                  <p
-                    className="text-center prompt-font mt-3 text-white/80 font-light"
-                    style={{
-                      whiteSpace: isGoldenSun || isVioletHorizon ? 'pre' : 'pre-line',
-                      fontWeight: 300,
-                      fontSize: isGoldenSun || isVioletHorizon ? '14px' : '17px',
-                      letterSpacing: isGoldenSun || isVioletHorizon ? '0em' : '0.02em'
-                    }}
-                  >
-                    {config.description}
+            <div className="px-6 mt-5 flex-1 flex flex-col justify-between">
+              <div className="space-y-2">
+                <div>
+                  <p className="result-heading-font font-bold tracking-wide" style={{ fontSize: '28px' }}>
+                    {config.title}
                   </p>
-                ) : (
-                  config.description.map((para, i) => (
-                    <p key={i}>{para}</p>
-                  ))
-                )}
-              </div>
-
-              <div className={`${isGoldenSun ? 'mt-4' : isBlueSky ? 'mt-2' : isPinkDawn ? 'mt-[26px]' : '-mt-4'} flex flex-col md:flex-row md:justify-start md:items-start gap-6 prompt-font`}>
-                <div className="flex-1 max-w-md flex flex-col justify-start h-full">
-                  <div className={`${isGoldenSun ? 'mt-36' : isBlueSky ? 'mt-36' : isPinkDawn ? 'mt-[146px]' : isVioletHorizon ? 'mt-[156px]' : 'mt-28'} text-left`}>
-                    <p className="font-bold" style={{ fontSize: '18px' }}>
-                      จุดแข็ง
-                    </p>
-                    <ul className="list-disc list-inside text-white/90 font-light" style={{ fontSize: '15px', fontWeight: 300 }}>
-                      {config.strengths.map((s, i) => (
-                        <li key={i}>{s}</li>
-                      ))}
-                    </ul>
-                  </div>
+                  <p className="result-heading-font font-extrabold mt-1" style={{ fontSize: '16px', fontWeight: 900 }}>
+                    {config.subtitle}
+                  </p>
                 </div>
 
-                <div className={`flex-1 max-w-md flex flex-col items-end ${isGoldenSun ? '-mt-10' : isBlueSky ? '-mt-6' : isPinkDawn ? '-mt-[6px]' : isVioletHorizon ? '-mt-6' : '-mt-10'}`}>
-                  <div className="text-right space-y-1">
+                <div className="text-left space-y-2 text-white/90" style={{ fontSize: '14px' }}>
+                  {typeof config.description === 'string' ? (
+                    <p
+                      className="text-center prompt-font mt-2 text-white/80 font-light"
+                      style={{
+                        whiteSpace: isGoldenSun || isVioletHorizon ? 'pre' : 'pre-line',
+                        fontWeight: 300,
+                        fontSize: isGoldenSun || isVioletHorizon ? '14px' : '17px',
+                        letterSpacing: isGoldenSun || isVioletHorizon ? '0em' : '0.02em'
+                      }}
+                    >
+                      {config.description}
+                    </p>
+                  ) : (
+                    config.description.map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-row gap-4 prompt-font mt-7">
+                <div className="flex-1 text-left mt-[142px]">
+                  <p className="font-bold" style={{ fontSize: '18px' }}>
+                    จุดแข็ง
+                  </p>
+                  <ul className="list-disc list-inside text-white/90 font-light" style={{ fontSize: '15px', fontWeight: 300 }}>
+                    {config.strengths.map((s, i) => (
+                      <li key={i}>{s}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex-1 flex flex-col gap-3">
+                  <div className="text-right mt-[207px]">
                     <p className="font-bold" style={{ fontSize: '18px' }}>
                       สิ่งที่ใจคุณต้องการ
                     </p>
@@ -161,20 +161,20 @@ function ResultCard({ config }) {
                       {config.needs}
                     </p>
                   </div>
-
-                  <div className={`text-left space-y-1 w-full ${isGoldenSun ? '-mt-12' : isBlueSky ? '-mt-8' : isPinkDawn ? '-mt-[6px]' : isVioletHorizon ? '-mt-[18px]' : '-mt-12'}`}>
-                    <p className="font-bold" style={{ fontSize: '18px' }}>
-                      ข้อความถึงคุณ
-                    </p>
-                    <p className="text-white/90 italic font-light" style={{ fontSize: '15px', whiteSpace: 'pre-line', fontWeight: 300 }}>
-                      {config.message}
-                    </p>
-                  </div>
                 </div>
+              </div>
+
+              <div className="prompt-font text-left space-y-1 w-full mt-3 self-start">
+                <p className="font-bold" style={{ fontSize: '18px' }}>
+                  ข้อความถึงคุณ
+                </p>
+                <p className="text-white/90 italic font-light w-full" style={{ fontSize: '15px', whiteSpace: 'pre-line', fontWeight: 300, textAlign: 'left' }}>
+                  {config.message}
+                </p>
               </div>
             </div>
 
-            <p className={`text-white/70 text-sm ${isBlueSky ? 'mt-1' : '-mt-1'}`}>IG: breath.exhibition</p>
+            <p className="text-white/70 text-sm mt-2">IG: breath.exhibition</p>
 
           </div>
         </div>
