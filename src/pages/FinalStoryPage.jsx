@@ -1,7 +1,26 @@
 import { useNavigate } from 'react-router-dom';
+import { sendWebhook } from '../lib/webhook';
 
 function FinalStoryPage() {
   const navigate = useNavigate();
+
+  const handleOpenResult = () => {
+    const savedAnswers = localStorage.getItem('assessmentAnswers');
+    let answerCount = 0;
+
+    try {
+      const parsed = savedAnswers ? JSON.parse(savedAnswers) : [];
+      answerCount = Array.isArray(parsed) ? parsed.length : 0;
+    } catch {
+      answerCount = 0;
+    }
+
+    sendWebhook('final_story_button_click', {
+      answerCount
+    });
+
+    navigate('/result');
+  };
 
   return (
     <div
@@ -39,7 +58,7 @@ function FinalStoryPage() {
           </p>
 
           <button
-            onClick={() => navigate('/result')}
+            onClick={handleOpenResult}
             className="text-white/40 group mt-2"
             style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.5)', fontWeight: 700 }}
           >

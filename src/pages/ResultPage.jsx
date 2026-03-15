@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { calculateResult } from '../utils/resultCalculator';
+import { sendWebhook } from '../lib/webhook';
 
 const DESIGN_WIDTH = 393;
 const DESIGN_HEIGHT = 852;
@@ -220,6 +221,8 @@ function ResultCard({ config }) {
 function ResultPage() {
   const navigate = useNavigate();
   const [result, setResult] = useState(null);
+  const [answerCount, setAnswerCount] = useState(0);
+  const [hasSentEnterWebhook, setHasSentEnterWebhook] = useState(false);
 
   useEffect(() => {
     const savedAnswers = localStorage.getItem('assessmentAnswers');
@@ -228,9 +231,24 @@ function ResultPage() {
       return;
     }
     const answers = JSON.parse(savedAnswers);
+    setAnswerCount(Array.isArray(answers) ? answers.length : 0);
     const calculatedResult = calculateResult(answers);
     setResult(calculatedResult);
   }, [navigate]);
+
+  useEffect(() => {
+    if (!result || hasSentEnterWebhook) {
+      return;
+    }
+
+    sendWebhook('result_page_enter', {
+      resultType: result.type,
+      resultTitle: resultConfig[result.type]?.title || resultConfig.PINK_DAWN.title,
+      answerCount
+    });
+
+    setHasSentEnterWebhook(true);
+  }, [result, answerCount, hasSentEnterWebhook]);
 
   if (!result) return null;
 
