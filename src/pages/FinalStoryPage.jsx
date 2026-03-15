@@ -5,19 +5,6 @@ function FinalStoryPage() {
   const navigate = useNavigate();
 
   const handleOpenResult = () => {
-    const savedAnswers = localStorage.getItem('assessmentAnswers');
-    let answerCount = 0;
-
-    try {
-      const parsed = savedAnswers ? JSON.parse(savedAnswers) : [];
-      answerCount = Array.isArray(parsed) ? parsed.length : 0;
-    } catch {
-      answerCount = 0;
-    }
-
-    sendWebhook('final_story_button_click', {
-      answerCount
-    });
 
     navigate('/result');
   };
