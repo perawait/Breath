@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { calculateResult } from '../utils/resultCalculator';
 
+const DESIGN_WIDTH = 393;
+const DESIGN_HEIGHT = 852;
+
 // โครงสร้างผลลัพธ์ทั้ง 4 แบบ ตามดีไซน์
 const resultConfig = {
   PINK_DAWN: {
@@ -81,11 +84,42 @@ function ResultCard({ config }) {
   const isBlueSky = config.title === 'BLUE SKY';
   const isPinkDawn = config.title === 'PINK DAWN';
   const isVioletHorizon = config.title === 'VIOLET HORIZON';
+  const [viewport, setViewport] = useState(() => ({
+    width: window.innerWidth,
+    height: window.visualViewport?.height || window.innerHeight
+  }));
+
+  useEffect(() => {
+    const updateViewport = () => {
+      setViewport({
+        width: window.innerWidth,
+        height: window.visualViewport?.height || window.innerHeight
+      });
+    };
+
+    updateViewport();
+    window.addEventListener('resize', updateViewport);
+    window.visualViewport?.addEventListener('resize', updateViewport);
+
+    return () => {
+      window.removeEventListener('resize', updateViewport);
+      window.visualViewport?.removeEventListener('resize', updateViewport);
+    };
+  }, []);
+
+  const scale = Math.min(viewport.width / DESIGN_WIDTH, viewport.height / DESIGN_HEIGHT);
 
   return (
-    <div className="w-full h-[100svh] overflow-hidden">
-      {/* รูปพื้นหลังแสดงตามขนาดจริงของไฟล์ */}
-      <div className="relative w-full h-full">
+    <div className="w-full h-[100svh] overflow-hidden flex items-center justify-center bg-black">
+      <div
+        className="relative"
+        style={{
+          width: `${DESIGN_WIDTH}px`,
+          height: `${DESIGN_HEIGHT}px`,
+          transform: `scale(${scale})`,
+          transformOrigin: 'center center'
+        }}
+      >
         <img
           src={config.bg}
           alt=""
