@@ -9,7 +9,7 @@ function StoryPage() {
       style={{ backgroundImage: "url('/bgst_1.png')" }}
     >
       <div className="max-w-md w-full h-full flex flex-col justify-between text-center text-white animate-fadeIn-slow pb-8">
-        <div className="mt-[14.25rem] px-6 space-y-0">
+        <div className="mt-[7.50rem] px-6 space-y-0">
           <p
             className="leading-relaxed font-extralight"
             style={{ fontSize: '17px', fontFamily: 'Prompt', fontWeight: 200 }}

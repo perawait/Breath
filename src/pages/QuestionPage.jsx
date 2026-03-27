@@ -170,8 +170,12 @@ function QuestionPage() {
 
   return (
     <div
-      className="relative h-[100svh] overflow-hidden flex flex-col p-4 bg-cover bg-no-repeat bg-center"
-      style={{ backgroundImage: "url('/bgqs_1.png')" }}
+      className="fixed inset-0 w-full h-full overflow-hidden flex flex-col p-4 bg-no-repeat bg-center"
+      style={{ 
+        backgroundImage: "url('/bgqs_1.png')",
+        backgroundSize: '100% 100%',
+        backgroundAttachment: 'fixed'
+      }}
     >
       <div className="sunset-ambient" />
 
